@@ -1,0 +1,8 @@
+{
+  "name": "bicycle-breakdown-report-app",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "git@github.com:noriaki/bicycle-breakdown-report-app.git",
+  "author": "Noriaki Uchiyama <uchiyama.noriaki@gmail.com>",
+  "license": "MIT"
+}
