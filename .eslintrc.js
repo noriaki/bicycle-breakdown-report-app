@@ -1,3 +1,5 @@
+const { readGitignoreFiles } = require('eslint-gitignore');
+
 module.exports = {
   env: {
     browser: true,
@@ -8,10 +10,12 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
     'prettier/@typescript-eslint',
     'prettier/react',
   ],
+  ignorePatterns: readGitignoreFiles({ cwd: __dirname }),
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
