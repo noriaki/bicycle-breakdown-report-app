@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import Name from '../components/Name';
+import Name from '~/components/Name';
 
 const IndexPage: NextPage = () => (
   <>
