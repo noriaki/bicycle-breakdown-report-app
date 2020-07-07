@@ -2,12 +2,12 @@ module.exports = {
   env: {
     browser: true,
     node: true,
-    es2020: true
+    es2020: true,
   },
   extends: [
     'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -15,11 +15,11 @@ module.exports = {
       jsx: true
     },
     ecmaVersion: 11,
-    sourceType: 'module'
+    sourceType: 'module',
   },
   plugins: [
+    '@typescript-eslint',
     'react',
-    '@typescript-eslint'
   ],
   root: true,
   rules: {
