@@ -5,6 +5,15 @@
   "repository": "git@github.com:noriaki/bicycle-breakdown-report-app.git",
   "author": "Noriaki Uchiyama <uchiyama.noriaki@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "next --port 3456",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc --noEmit",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "lint": "eslint --ext .ts,.tsx src"
+  },
   "dependencies": {
     "next": "9.4.4",
     "react": "16.13.1",
