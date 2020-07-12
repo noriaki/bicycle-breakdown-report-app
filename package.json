@@ -1,16 +1,29 @@
 {
   "name": "bicycle-breakdown-report-app",
   "version": "0.1.0",
+  "engines": {
+    "node": "14.x"
+  },
   "main": "index.js",
   "repository": "git@github.com:noriaki/bicycle-breakdown-report-app.git",
   "author": "Noriaki Uchiyama <uchiyama.noriaki@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "next --port 3456",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc --noEmit",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "lint": "eslint --ext .ts,.tsx src"
+  },
   "dependencies": {
     "next": "9.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.4",
     "@types/node": "14.0.22",
     "@types/react": "16.9.43",
     "@types/react-dom": "16.9.8",
@@ -19,10 +32,13 @@
     "eslint": "7.4.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-gitignore": "0.1.0",
+    "eslint-plugin-jest": "^23.18.0",
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-react": "7.20.3",
     "eslint-plugin-react-hooks": "4.0.7",
+    "jest": "^26.1.0",
     "prettier": "2.0.5",
+    "ts-jest": "^26.1.1",
     "typescript": "3.9.6"
   }
 }
