@@ -1,4 +1,6 @@
-import { useState, useRef } from 'react';
+import { FC, useState, useRef } from 'react';
+
+// material-ui components
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import FormControl from '@material-ui/core/FormControl';
@@ -7,10 +9,14 @@ import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
-const ids = ['CYD', 'TYO', 'MNT'] as const;
+// styles
+import useStyles from '~/styles/Report/Editor/BicycleId-Style';
 
-const BicycleId = () => {
-  const [bicycleId, setBicycleId] = useState<string | null>(null);
+const ids = ['CYD', 'TYO', 'MNT'] as const;
+type Ids = typeof ids[number];
+
+const BicycleId: FC = () => {
+  const [bicycleId, setBicycleId] = useState<Ids | null>(null);
   const inputRef = useRef();
   const handleBicycleId = (e, newBicycleId) => {
     if (newBicycleId !== null) {
@@ -19,21 +25,21 @@ const BicycleId = () => {
     inputRef.current.focus();
   };
 
+  const classes = useStyles();
+
   return (
     <>
       <FormControl fullWidth variant="outlined">
-        <InputLabel shrink htmlFor="bicycleId">
-          自転車No
-        </InputLabel>
+        <InputLabel htmlFor="bicycleId">自転車No</InputLabel>
         <FormHelperText id="bicycleIdText">
           英字をタップして選択し数字を入力してください
         </FormHelperText>
         <ToggleButtonGroup
           exclusive
-          size="large"
           value={bicycleId}
           onChange={handleBicycleId}
           aria-label="outlined primary button group"
+          className={classes.toggleButtonGroupContainer}
         >
           {ids.map((id) => (
             <ToggleButton key={id} value={id}>
