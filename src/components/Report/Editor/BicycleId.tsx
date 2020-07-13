@@ -1,4 +1,5 @@
 import { FC, MouseEvent, useState, useRef } from 'react';
+import { Control, Controller } from 'react-hook-form';
 
 // material-ui components
 import ToggleButton from '@material-ui/lab/ToggleButton';
@@ -12,18 +13,24 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 // styles
 import useStyles from '~/styles/Report/Editor/BicycleId-Style';
 
-const ids = ['CYD', 'TYO', 'MNT'] as const;
-type Ids = typeof ids[number];
+const bicycleKeys = ['CYD', 'TYO', 'MNT'] as const;
+type BicycleKeys = typeof bicycleKeys[number];
 
-const BicycleId: FC = () => {
-  const [bicycleId, setBicycleId] = useState<Ids | null>(null);
+type Props = {
+  control: Control;
+};
+
+type FCwithProps = FC<Props>;
+
+const BicycleId: FCwithProps = ({ control }) => {
+  const [bicycleKey, setBicycleId] = useState<BicycleKeys | null>(null);
   const inputRef = useRef<HTMLInputElement>();
-  const handleBicycleId: (
+  const handleBicycleKey: (
     event: MouseEvent<HTMLElement>,
-    newBicycleId?: Ids,
-  ) => void = (_, newBicycleId) => {
-    if (newBicycleId != null) {
-      setBicycleId(newBicycleId);
+    newBicycleKey?: BicycleKeys,
+  ) => void = (_, newBicycleKey) => {
+    if (newBicycleKey != null) {
+      setBicycleId(newBicycleKey);
     }
     if (inputRef.current) {
       inputRef.current.focus();
@@ -41,27 +48,30 @@ const BicycleId: FC = () => {
         </FormHelperText>
         <ToggleButtonGroup
           exclusive
-          value={bicycleId}
-          onChange={handleBicycleId}
+          value={bicycleKey}
+          onChange={handleBicycleKey}
           aria-label="outlined primary button group"
           className={classes.toggleButtonGroupContainer}
         >
-          {ids.map((id) => (
-            <ToggleButton key={id} value={id}>
-              {id}
+          {bicycleKeys.map((key) => (
+            <ToggleButton key={key} value={key}>
+              {key}
             </ToggleButton>
           ))}
         </ToggleButtonGroup>
-        <OutlinedInput
+        <Controller
+          control={control}
+          name="bicycleNo"
+          as={OutlinedInput}
           fullWidth
-          id="bicycleId"
+          id="bicycleNo"
           placeholder="00000"
           type="number"
           inputMode="numeric"
           inputRef={inputRef}
           startAdornment={
             <InputAdornment position="start">
-              {bicycleId || '選択'}
+              {bicycleKey || '選択'}
             </InputAdornment>
           }
         />

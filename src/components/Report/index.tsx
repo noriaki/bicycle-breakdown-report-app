@@ -1,9 +1,23 @@
+import { FC } from 'react';
+import { useForm } from 'react-hook-form';
+
+// components
 import BicycleId from './Editor/BicycleId';
 
-const Report = () => {
+type ReportFormData = {
+  bicycleNo: number;
+};
+
+const Report: FC = () => {
+  const { control, handleSubmit } = useForm<ReportFormData>();
+
+  const onSubmit: (data: ReportFormData) => void = (data) => {
+    console.log(data);
+  };
+
   return (
-    <form>
-      <BicycleId />
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <BicycleId control={control} />
     </form>
   );
 };
