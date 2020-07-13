@@ -1,27 +1,48 @@
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { useState } from 'react';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
 const ids = ['CYD', 'TYO', 'MNT'] as const;
 
 const BicycleId = () => {
+  const [bicycleId, setBicycleId] = useState<string | null>(null);
+  const handleBicycleId = (e, newBicycleId) => setBicycleId(newBicycleId);
+
   return (
     <>
       <div>
-        <ButtonGroup color="primary" aria-label="outlined primary button group">
+        <ToggleButtonGroup
+          exclusive
+          value={bicycleId}
+          onChange={handleBicycleId}
+          aria-label="outlined primary button group"
+        >
           {ids.map((id) => (
-            <Button key={id}>{id}</Button>
+            <ToggleButton key={id} value={id}>
+              {id}
+            </ToggleButton>
           ))}
-        </ButtonGroup>
+        </ToggleButtonGroup>
       </div>
       <div>
         <TextField
-          label="ID"
           id="id"
+          label="ID"
+          placeholder="000000"
+          fullWidth
+          type="number"
+          variant="outlined"
+          InputLabelProps={{
+            shrink: true,
+          }}
           InputProps={{
+            inputMode: 'numeric',
             startAdornment: (
-              <InputAdornment position="start">CYD</InputAdornment>
+              <InputAdornment position="start">
+                {bicycleId || '選択'}
+              </InputAdornment>
             ),
           }}
         />
