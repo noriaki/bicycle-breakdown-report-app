@@ -1,20 +1,36 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
 const ids = ['CYD', 'TYO', 'MNT'] as const;
 
 const BicycleId = () => {
   const [bicycleId, setBicycleId] = useState<string | null>(null);
-  const handleBicycleId = (e, newBicycleId) => setBicycleId(newBicycleId);
+  const inputRef = useRef();
+  const handleBicycleId = (e, newBicycleId) => {
+    if (newBicycleId !== null) {
+      setBicycleId(newBicycleId);
+    }
+    inputRef.current.focus();
+  };
 
   return (
     <>
-      <div>
+      <FormControl fullWidth variant="outlined">
+        <InputLabel shrink htmlFor="bicycleId">
+          自転車No
+        </InputLabel>
+        <FormHelperText id="bicycleIdText">
+          英字をタップして選択し数字を入力してください
+        </FormHelperText>
         <ToggleButtonGroup
           exclusive
+          size="large"
           value={bicycleId}
           onChange={handleBicycleId}
           aria-label="outlined primary button group"
@@ -25,28 +41,20 @@ const BicycleId = () => {
             </ToggleButton>
           ))}
         </ToggleButtonGroup>
-      </div>
-      <div>
-        <TextField
-          id="id"
-          label="ID"
-          placeholder="000000"
+        <OutlinedInput
           fullWidth
+          id="bicycleId"
+          placeholder="00000"
           type="number"
-          variant="outlined"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          InputProps={{
-            inputMode: 'numeric',
-            startAdornment: (
-              <InputAdornment position="start">
-                {bicycleId || '選択'}
-              </InputAdornment>
-            ),
-          }}
+          inputMode="numeric"
+          inputRef={inputRef}
+          startAdornment={
+            <InputAdornment position="start">
+              {bicycleId || '選択'}
+            </InputAdornment>
+          }
         />
-      </div>
+      </FormControl>
     </>
   );
 };
