@@ -22,7 +22,8 @@
     "@material-ui/lab": "4.0.0-alpha.56",
     "next": "9.4.4",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-hook-form": "^6.0.4"
   },
   "devDependencies": {
     "@types/jest": "26.0.4",
