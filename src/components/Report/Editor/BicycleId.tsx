@@ -1,4 +1,4 @@
-import { FC, useState, useRef } from 'react';
+import { FC, MouseEvent, useState, useRef } from 'react';
 
 // material-ui components
 import ToggleButton from '@material-ui/lab/ToggleButton';
@@ -17,12 +17,17 @@ type Ids = typeof ids[number];
 
 const BicycleId: FC = () => {
   const [bicycleId, setBicycleId] = useState<Ids | null>(null);
-  const inputRef = useRef();
-  const handleBicycleId = (e, newBicycleId) => {
-    if (newBicycleId !== null) {
+  const inputRef = useRef<HTMLInputElement>();
+  const handleBicycleId: (
+    event: MouseEvent<HTMLElement>,
+    newBicycleId?: Ids,
+  ) => void = (_, newBicycleId) => {
+    if (newBicycleId != null) {
       setBicycleId(newBicycleId);
     }
-    inputRef.current.focus();
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   };
 
   const classes = useStyles();
