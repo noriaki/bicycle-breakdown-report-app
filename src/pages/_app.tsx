@@ -7,6 +7,7 @@ import Container from '@material-ui/core/Container';
 import theme from '~/contexts/theme';
 
 const BBRApp = (props: AppProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { Component, pageProps } = props;
 
   React.useEffect(() => {
