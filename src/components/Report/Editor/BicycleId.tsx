@@ -63,6 +63,7 @@ const BicycleId: NextComponentWithProps = ({ control }) => {
         <Controller
           control={control}
           name="bicycleNo"
+          defaultValue=""
           as={OutlinedInput}
           fullWidth
           id="bicycleNo"
