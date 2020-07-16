@@ -1,4 +1,4 @@
-import { NextComponentType } from 'next';
+import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 
 // components
@@ -8,7 +8,7 @@ type ReportFormData = {
   bicycleNo: number;
 };
 
-const Report: NextComponentType = () => {
+const Report: FC = () => {
   const { control, handleSubmit } = useForm<ReportFormData>();
 
   const onSubmit: (data: ReportFormData) => void = (data) => {
