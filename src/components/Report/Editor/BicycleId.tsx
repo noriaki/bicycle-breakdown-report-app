@@ -24,14 +24,16 @@ type Props = {
 type NextComponentWithProps = NextComponentType<NextPageContext, {}, Props>;
 
 const BicycleId: NextComponentWithProps = ({ control }) => {
-  const [bicycleKey, setBicycleId] = useState<BicycleKeys | null>(null);
+  const { setValue } = control;
+  const [bicycleKey, setBicycleKey] = useState<BicycleKeys | null>(null);
   const inputRef = useRef<HTMLInputElement>();
   const handleBicycleKey: (
     event: MouseEvent<HTMLElement>,
     newBicycleKey?: BicycleKeys,
   ) => void = (_, newBicycleKey) => {
     if (newBicycleKey != null) {
-      setBicycleId(newBicycleKey);
+      setBicycleKey(newBicycleKey);
+      setValue('bicycleKey', newBicycleKey);
     }
     if (inputRef.current) {
       inputRef.current.focus();
@@ -43,7 +45,7 @@ const BicycleId: NextComponentWithProps = ({ control }) => {
   return (
     <>
       <FormControl fullWidth variant="outlined">
-        <InputLabel htmlFor="bicycleId">自転車No</InputLabel>
+        <InputLabel htmlFor="bicycleNo">自転車No</InputLabel>
         <FormHelperText id="bicycleIdText">
           英字をタップして選択し数字を入力してください
         </FormHelperText>
