@@ -1,4 +1,5 @@
-import { FC, MouseEvent, useState, useRef } from 'react';
+import { MouseEvent, useState, useRef } from 'react';
+import { NextComponentType, NextPageContext } from 'next';
 import { Control, Controller } from 'react-hook-form';
 
 // material-ui components
@@ -20,9 +21,9 @@ type Props = {
   control: Control;
 };
 
-type FCwithProps = FC<Props>;
+type NextComponentWithProps = NextComponentType<NextPageContext, {}, Props>;
 
-const BicycleId: FCwithProps = ({ control }) => {
+const BicycleId: NextComponentWithProps = ({ control }) => {
   const [bicycleKey, setBicycleId] = useState<BicycleKeys | null>(null);
   const inputRef = useRef<HTMLInputElement>();
   const handleBicycleKey: (
