@@ -23,7 +23,7 @@
     "next": "9.5.5",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-hook-form": "6.9.5"
+    "react-hook-form": "6.9.6"
   },
   "devDependencies": {
     "@types/jest": "26.0.15",
