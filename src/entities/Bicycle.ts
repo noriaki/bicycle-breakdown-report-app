@@ -33,4 +33,8 @@ export default class Bicycle {
     }
     throw new Error(`${value} is invalid format, '(CYD|TYO|MNT)00000'`);
   }
+
+  static get areaKeys(): Area[] {
+    return areaKeys;
+  }
 }
