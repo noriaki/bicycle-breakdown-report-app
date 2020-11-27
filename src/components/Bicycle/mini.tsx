@@ -10,12 +10,7 @@ import Typography from '@material-ui/core/Typography';
 // styles
 import useStyles from '~/styles/Bicycle/mini-style';
 
-type Props = {
-  area: Bicycle['area'];
-  num: Bicycle['num'];
-};
-
-const BicycleMiniComponent = ({ area, num }: Props) => {
+const BicycleMiniComponent = ({ area, num }: Bicycle) => {
   const value = Bicycle.toValue(area, num);
   const styles = useStyles();
   return (
