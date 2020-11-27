@@ -79,7 +79,12 @@ const BicycleFormComponent = ({ area, num }: Props) => {
               <FormControlLabel
                 key={areaKey}
                 value={areaKey}
-                control={<Radio className={styles.areaHiddenRadio} inputRef={register()} />}
+                control={
+                  <Radio
+                    className={styles.areaHiddenRadio}
+                    inputRef={register()}
+                  />
+                }
                 label={
                   <AreaLabel area={areaKey} selected={selectedArea === areaKey}>
                     {areaKey}
