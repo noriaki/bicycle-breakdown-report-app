@@ -18,5 +18,14 @@ export default makeStyles((theme: Theme) =>
     areaHiddenRadio: {
       display: 'none',
     },
+    num: {
+      fontSize: '1.5rem',
+      marginTop: theme.spacing(0.5),
+
+      '& > input': {
+        letterSpacing: '0.3rem',
+        paddingLeft: theme.spacing(1),
+      },
+    },
   }),
 );

@@ -11,6 +11,9 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import Button from '@material-ui/core/Button';
 
 // styles
@@ -49,16 +52,14 @@ const AreaLabel = ({ area, selected }: AreaLabelProps) => {
 };
 
 const BicycleFormComponent = ({ area, num }: Props) => {
-  const { register, watch, handleSubmit, setValue } = useForm({
+  const { register, watch, handleSubmit } = useForm({
     defaultValues: {
       'bicycle[area]': area,
       'bicycle[num]': num,
     },
   });
   const onSubmit = ({ bicycle }) => console.log(new Bicycle(bicycle));
-  const handleChange = (event: Event) => {
-    setValue((event.target as HTMLInputElement).value);
-  };
+
   const selectedArea = watch('bicycle[area]', area);
 
   const styles = useStyles();
@@ -66,13 +67,15 @@ const BicycleFormComponent = ({ area, num }: Props) => {
   return (
     <Paper square className={styles.formContainer}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <FormControl component="fieldset">
+        <FormControl component="fieldset" fullWidth>
           <FormLabel component="legend">自転車No</FormLabel>
+          <FormHelperText>
+            自転車の記号を選んで番号を入力してください
+          </FormHelperText>
           <RadioGroup
             aria-label="自転車記号"
             name="bicycle[area]"
             defaultValue={area}
-            onChange={handleChange}
             className={styles.areaButtonContainer}
           >
             {Bicycle.areaKeys.map((areaKey) => (
@@ -82,24 +85,34 @@ const BicycleFormComponent = ({ area, num }: Props) => {
                 control={
                   <Radio
                     className={styles.areaHiddenRadio}
-                    inputRef={register()}
+                    inputRef={register({ required: true })}
                   />
                 }
                 label={
-                  <AreaLabel area={areaKey} selected={selectedArea === areaKey}>
-                    {areaKey}
-                  </AreaLabel>
+                  <AreaLabel
+                    area={areaKey}
+                    selected={areaKey === selectedArea}
+                  />
                 }
                 className={styles.areaLabel}
               />
             ))}
           </RadioGroup>
+          <OutlinedInput
+            aria-label="自転車番号"
+            name="bicycle[num]"
+            type="number"
+            placeholder="00000"
+            inputRef={register({ required: true, min: 1, max: 19999 })}
+            margin="dense"
+            className={styles.num}
+            startAdornment={
+              <InputAdornment position="start">
+                {selectedArea || '(記号)'}
+              </InputAdornment>
+            }
+          />
         </FormControl>
-        <input
-          name="bicycle[num]"
-          type="number"
-          ref={register({ required: true, min: 1, max: 19999 })}
-        />
       </form>
     </Paper>
   );
