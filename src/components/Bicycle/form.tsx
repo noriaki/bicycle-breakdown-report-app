@@ -19,12 +19,7 @@ import Button from '@material-ui/core/Button';
 // styles
 import useStyles from '~/styles/Bicycle/form-style';
 
-type Props = {
-  area?: Bicycle['area'];
-  num?: Bicycle['num'];
-};
-
-type Event = React.ChangeEvent<HTMLInputElement>;
+type Props = Partial<Readonly<Pick<Bicycle, 'area' | 'num'>>>;
 
 type AreaLabelProps = {
   area?: Bicycle['area'];
@@ -58,7 +53,8 @@ const BicycleFormComponent = ({ area, num }: Props) => {
       'bicycle[num]': num,
     },
   });
-  const onSubmit = ({ bicycle }) => console.log(new Bicycle(bicycle));
+  const onSubmit = ({ bicycle }: { bicycle: Bicycle }) =>
+    console.log(new Bicycle(bicycle));
 
   const selectedArea = watch('bicycle[area]', area);
 

@@ -3,8 +3,9 @@ type Area = typeof areaKeys[number];
 
 export const extractArea = (value: string): Area | undefined => {
   const suffix = value.slice(0, 3);
-  if (areaKeys.includes(suffix)) {
-    return suffix;
+  // ref: https://github.com/microsoft/TypeScript/issues/31018#issuecomment-550956390
+  if ((areaKeys as readonly string[]).includes(suffix)) {
+    return suffix as Area;
   }
 };
 
@@ -34,7 +35,7 @@ export default class Bicycle {
     throw new Error(`${value} is invalid format, '(CYD|TYO|MNT)00000'`);
   }
 
-  static get areaKeys(): Area[] {
+  static get areaKeys(): typeof areaKeys {
     return areaKeys;
   }
 }
