@@ -21,8 +21,8 @@ export default class Bicycle {
     return Bicycle.toValue(this.area, this.num);
   }
 
-  static toValue(area: string, num: number): string {
-    return `${area}${num.toString().padStart(4, 0)}`;
+  static toValue(area: Area, num: number): string {
+    return `${area}${num.toString().padStart(4, '0')}`;
   }
 
   static fromValue(value: string): Bicycle {
