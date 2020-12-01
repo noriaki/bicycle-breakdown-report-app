@@ -1,10 +1,12 @@
 import { NextPage } from 'next';
-import Name from '~/components/Name';
+
+import Bicycle from '~/components/Bicycle';
 
 const IndexPage: NextPage = () => (
   <>
-    <p>Next.js</p>
-    <Name name="hoge" />
+    <Bicycle mini area="TYO" num={99999} />
+    <Bicycle />
+    <Bicycle area="TYO" num={1} />
   </>
 );
 
